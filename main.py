@@ -13,7 +13,7 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         if (message.author.bot):
             return
-        if message.channel.id == 1202280249128386610:
+        if message.channel.id == int(os.environ.get("CHANNEL_ID")):
             print("Found message in right channel")
             if re.search(pattern, message.content):
               await message.add_reaction("💜")
