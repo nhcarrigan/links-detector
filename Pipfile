@@ -12,5 +12,5 @@ name = "pypi"
 python_version = "3.8"
 
 [scripts]
-tests = "python3 test.py"
+test = "python3 test.py"
 start = "python3 main.py"
