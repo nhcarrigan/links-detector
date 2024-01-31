@@ -15,9 +15,7 @@ class MyClient(discord.Client):
             return
         if message.channel.id == int(os.environ.get("CHANNEL_ID")):
             print("Found message in right channel")
-            if re.search(pattern, message.content):
-              await message.add_reaction("💜")
-            else:
+            if not re.search(pattern, message.content):
               await message.reply("So sorry, but only `twitch.tv` and `kick.com` links are allowed in this channel.")
               await message.delete()
               webhook = discord.Webhook.from_url(os.environ.get("WH_URL"), client=self)
