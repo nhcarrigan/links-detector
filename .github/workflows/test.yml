@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Python CI
 on:
   push:
     branches:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   ci:
-    name: Lint / Build / Test
+    name: Testy Westy
     runs-on: ubuntu-20.04
 
     steps:
@@ -17,13 +17,16 @@ jobs:
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
       - name: Setup Python
-        uses: actions/setup-python
+        uses: actions/setup-python@v5
         with:
             python-version: 3.8
     
       - name: Setup Pipenv
         run: |
           python3 -m pip install pipenv
+
+      - name: Install deps
+        run: |
           pipenv install
 
       - name: Run tests
