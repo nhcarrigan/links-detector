@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Python CI
 on:
   push:
     branches:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   ci:
-    name: Lint / Build / Test
+    name: Run Tests
     runs-on: ubuntu-20.04
 
     steps:
@@ -24,6 +24,9 @@ jobs:
       - name: Setup Pipenv
         run: |
           python3 -m pip install pipenv
+
+      - name: Install deps
+        run: |
           pipenv install
 
       - name: Run tests
