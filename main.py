@@ -4,6 +4,7 @@ load_dotenv()
 import discord
 import os
 import re
+from pattern import pattern
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -14,7 +15,6 @@ class MyClient(discord.Client):
             return
         if message.channel.id == 1202280249128386610:
             print("Found message in right channel")
-            pattern = r'(?i)\b(?:https?://)?(?:www\.)?(?:twitch\.tv|kick\.com)(?:/[^\s]+)?\b'
             if re.search(pattern, message.content):
               await message.add_reaction("💜")
             else:

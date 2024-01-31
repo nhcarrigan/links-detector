@@ -1,0 +1,1 @@
+pattern = r'(?i)\b(?:https?://)?(?:www\.)?(?:twitch\.tv|kick\.com)(?:/[^\s]+)\b'
