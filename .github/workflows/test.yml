@@ -1,0 +1,31 @@
+name: Node.js CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: Lint / Build / Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout Source Files
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+
+      - name: Setup Python
+        uses: actions/setup-python
+        with:
+            python-version: 3.8
+    
+      - name: Setup Pipenv
+        run: |
+          python3 -m pip install pipenv
+          pipenv install
+
+      - name: Run tests
+        run: |
+          pipenv run test
