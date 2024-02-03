@@ -20,13 +20,13 @@ class MyClient(discord.Client):
         if message.author.bot:
             return
         if message.channel.id == int(os.environ.get("CHANNEL_ID")):
-            if (message.author.guild_permissions.manage_messages
-                    or message.author.guild_permissions.administrator):
+            if (message.channel.permissions_for(message.author).manage_messages
+                    or message.channel.permissions_for(message.author).administrator):
                 return
             print("Found message in right channel")
             valid_links = len(re.findall(PATTERN, message.content))
             invalid_links = len(re.findall(LINKS, message.content))
-            if invalid_links >= valid_links:
+            if invalid_links > valid_links:
                 await message.reply(
                     content="So sorry, but only `twitch.tv` and `kick.com`"
                     + " links are allowed in this channel."
@@ -34,11 +34,12 @@ class MyClient(discord.Client):
                 await message.delete()
                 webhook = discord.Webhook.from_url(
                     os.environ.get("WH_URL"), client=self)
+                quoted = message.content.replace('\n', '\n> ')
                 await webhook.send(
                     content="Deleted message for failing link test:"
-                    + f"\n\n> {message.content}"
-                    + f"- Links found: ${invalid_links}"
-                    + f"- Valid links: ${valid_links}"
+                    + f"\n\n> {quoted}"
+                    + f"\n- Links found: {invalid_links}"
+                    + f"\n- Valid links: {valid_links}"
                 )
 
 
