@@ -35,12 +35,8 @@ jobs:
 
       - name: Check formatting
         run: |
-          pipenv run format | wc -l
-          exit_code=$?
-          if [ $exit_code -ne 0 ]
-            echo "Error: Command failed with exit code $exit_code" >&2
-            exit 1
-          fi
+          DIFF_LINES=$(pipenv run format | wc -l)
+          exit $DIFF_LINES
 
       - name: Run tests
         run: |
