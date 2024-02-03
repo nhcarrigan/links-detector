@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 "discord.py" = "2.3.2"
+pylint = "*"
+autopep8 = "*"
 
 [dev-packages]
 
@@ -14,3 +16,5 @@ python_version = "3.8"
 [scripts]
 test = "python3 test.py"
 start = "python3 main.py"
+lint = "pylint main.py pattern.py test.py"
+format = "autopep8 --diff main.py test.py pattern.py"

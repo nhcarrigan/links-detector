@@ -29,6 +29,15 @@ jobs:
         run: |
           pipenv install
 
+      - name: Lint
+        run: |
+          pipenv run lint
+
+      - name: Check formatting
+        run: |
+          DIFF_LINES=$(pipenv run format | wc -l)
+          exit $DIFF_LINES
+
       - name: Run tests
         run: |
           pipenv run test
