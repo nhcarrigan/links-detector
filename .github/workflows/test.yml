@@ -29,6 +29,14 @@ jobs:
         run: |
           pipenv install
 
+      - name: Lint
+        run: |
+          pipenv run lint
+
+      - name: Check formatting
+        run: |
+          pipenv run format
+
       - name: Run tests
         run: |
           pipenv run test
