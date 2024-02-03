@@ -34,7 +34,7 @@ jobs:
       #     pipenv run lint
 
       - name: Check formatting
-        run: |
+        run: >-
           pipenv run format | wc -l
           exit_code=$?
           if [ $exit_code -ne 0 ]; then
