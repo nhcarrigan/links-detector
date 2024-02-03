@@ -5,7 +5,7 @@ import re
 
 import discord
 
-from pattern import PATTERN
+from pattern import LINKS, PATTERN
 
 
 class MyClient(discord.Client):
@@ -24,7 +24,9 @@ class MyClient(discord.Client):
                     or message.author.guild_permissions.administrator):
                 return
             print("Found message in right channel")
-            if not re.search(PATTERN, message.content):
+            valid_links = len(re.findall(PATTERN, message.content))
+            invalid_links = len(re.findall(LINKS, message.content))
+            if invalid_links >= valid_links:
                 await message.reply(
                     content="So sorry, but only `twitch.tv` and `kick.com`"
                     + " links are allowed in this channel."
@@ -33,7 +35,10 @@ class MyClient(discord.Client):
                 webhook = discord.Webhook.from_url(
                     os.environ.get("WH_URL"), client=self)
                 await webhook.send(
-                    content=f"Deleted message for failing link test:\n\n> {message.content}"
+                    content="Deleted message for failing link test:"
+                    + f"\n\n> {message.content}"
+                    + f"- Links found: ${invalid_links}"
+                    + f"- Valid links: ${valid_links}"
                 )
 
 
