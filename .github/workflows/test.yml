@@ -35,7 +35,7 @@ jobs:
 
       - name: Check formatting
         run: |
-          pipenv run format
+          pipenv run format | wc -l && exit $?
 
       - name: Run tests
         run: |
