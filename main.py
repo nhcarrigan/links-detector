@@ -11,8 +11,8 @@ from pattern import PATTERN
 class MyClient(discord.Client):
     """The bot's instance."""
     async def on_ready(self):
-          """Fires when the bot is ready to receive gateway events."""
-          print(f'Logged on as {self.user}')
+        """Fires when the bot is ready to receive gateway events."""
+        print(f'Logged on as {self.user}')
 
     async def on_message(self, message):
         """Fires when the bot receives a MESSAGE_CREATE event.

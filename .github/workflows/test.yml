@@ -29,9 +29,9 @@ jobs:
         run: |
           pipenv install
 
-      # - name: Lint
-      #   run: |
-      #     pipenv run lint
+      - name: Lint
+        run: |
+          pipenv run lint
 
       - name: Check formatting
         run: |
