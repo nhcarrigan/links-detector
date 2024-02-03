@@ -14,7 +14,7 @@ class MyClient(discord.Client):
         """Fires when the bot is ready to receive gateway events."""
         print(f'Logged on as {self.user}')
 
-    async def on_message(self, message):
+    async def on_message(self, message: discord.Message):
         """Fires when the bot receives a MESSAGE_CREATE event.
            Checks if the message is in the promo channel, then validates links."""
         if message.author.bot:
@@ -26,8 +26,8 @@ class MyClient(discord.Client):
             print("Found message in right channel")
             if not re.search(PATTERN, message.content):
                 await message.reply(
-                    "So sorry, but only `twitch.tv` and `kick.com` "
-                    + "links are allowed in this channel."
+                    content="So sorry, but only `twitch.tv` and `kick.com`"
+                    + " links are allowed in this channel."
                 )
                 await message.delete()
                 webhook = discord.Webhook.from_url(
