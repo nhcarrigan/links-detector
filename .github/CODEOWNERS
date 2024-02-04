@@ -8,5 +8,5 @@
 # Negate rule above so renovate can automerge
 # -------------------------------------------------
 
-/package.json
-/pnpm-lock.yaml
+/Pipfile
+/Pipfile.lock
